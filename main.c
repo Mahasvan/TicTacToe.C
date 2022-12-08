@@ -6,6 +6,7 @@
 char gameMode[] = "";
 int unoccupiedPlaces[boardSize][2];
 int plausibleMoves[boardSize*boardSize][2];
+int winningMoves[boardSize*boardSize][2];
 
 #include "algo.h"
 
@@ -34,6 +35,21 @@ int main() {
             printf("Draw!\n");
             break;
         }
+
+        // the bot starts to think
+        findUnoccupiedPlaces();
+        int wOffset = winningMoves_Row(0);
+        wOffset += winningMoves_Column(0);
+        wOffset += winningMoves_Diagonals(0);
+        if (wOffset > 0) {
+            int move = rand() % wOffset;
+            placeO(winningMoves[move][0], winningMoves[move][1]);
+            clearScreen();
+            printBoard();
+            printf("O wins!\n");
+            break;
+        }
+
         findUnoccupiedPlaces();
         int offset = plausibleMoves_Rows(0);
         offset += plausibleMoves_Columns(offset);

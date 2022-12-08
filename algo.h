@@ -310,6 +310,106 @@ int checkWin_Diagonals(char piece) {
     return 0;
 }
 
+int winningMoves_Row (int offset) {
+    // check each row, if the row has n-1 pieces of the bot and one empty space, then add the empty space to winningMoves
+    int winningRowsCount = 0;
+    for (int i = 0; i < boardSize; i++) {
+        int botPieces = 0;
+        int emptySpaces = 0;
+        for (int j = 0; j < boardSize; j++) {
+            if (board[i][j] == botPiece) {
+                botPieces++;
+            } else if (board[i][j] == space) {
+                emptySpaces++;
+            }
+        }
+        if (botPieces == boardSize-1 && emptySpaces == 1) {
+            for (int j = 0; j < boardSize; j++) {
+                if (board[i][j] == space) {
+                    winningMoves[offset+winningRowsCount][0] = i;
+                    winningMoves[offset+winningRowsCount][1] = j;
+                    winningRowsCount++;
+                }
+            }
+        }
+    }
+    return winningRowsCount;
+}
+
+int winningMoves_Column (int offset) {
+    // check each column, if the column has n-1 pieces of the bot and one empty space, then add the empty space to winningMoves
+    int winningColumnsCount = 0;
+    for (int i = 0; i < boardSize; i++) {
+        int botPieces = 0;
+        int emptySpaces = 0;
+        for (int j = 0; j < boardSize; j++) {
+            if (board[j][i] == botPiece) {
+                botPieces++;
+            } else if (board[j][i] == space) {
+                emptySpaces++;
+            }
+        }
+        if (botPieces == boardSize-1 && emptySpaces == 1) {
+            for (int j = 0; j < boardSize; j++) {
+                if (board[j][i] == space) {
+                    winningMoves[offset+winningColumnsCount][0] = j;
+                    winningMoves[offset+winningColumnsCount][1] = i;
+                    winningColumnsCount++;
+                }
+            }
+        }
+    }
+    return winningColumnsCount;
+}
+
+int winningMoves_Diagonals (int offset) {
+    // check the two diagonals, if the diagonals have n-1 pieces of the bot and one empty space, then add the empty space to winningMoves
+    int winningDiagonalsCount = 0;
+    int botPieces = 0;
+    int emptySpaces = 0;
+
+    // check the first diagonal
+    for (int i = 0; i < boardSize; i++) {
+        if (board[i][i] == botPiece) {
+            botPieces++;
+        } else if (board[i][i] == space) {
+            emptySpaces++;
+        }
+    }
+    if (botPieces == boardSize-1 && emptySpaces == 1) {
+        for (int i = 0; i < boardSize; i++) {
+            if (board[i][i] == space) {
+                winningMoves[offset+winningDiagonalsCount][0] = i;
+                winningMoves[offset+winningDiagonalsCount][1] = i;
+                winningDiagonalsCount++;
+            }
+        }
+    }
+
+    botPieces = 0; emptySpaces = 0;
+
+    // check the second diagonal
+    for (int i=0; i < boardSize; i++) {
+        if (board[i][boardSize-i-1] == botPiece) {
+            botPieces++;
+        } else if (board[i][boardSize-i-1] == space) {
+            emptySpaces++;
+        }
+    }
+
+    if (botPieces == boardSize-1 && emptySpaces == 1) {
+        for (int i = 0; i < boardSize; i++) {
+            if (board[i][boardSize-i-1] == space) {
+                winningMoves[offset+winningDiagonalsCount][0] = i;
+                winningMoves[offset+winningDiagonalsCount][1] = boardSize-i-1;
+                winningDiagonalsCount++;
+            }
+        }
+    }
+
+    return winningDiagonalsCount;
+}
+
 int checkWin (char piece) {
     if (checkWin_Row(piece) || checkWin_Column(piece) || checkWin_Diagonals(piece)) {
         return 1;
