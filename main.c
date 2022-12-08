@@ -9,7 +9,6 @@ int plausibleMoves[boardSize*boardSize][2];
 
 #include "algo.h"
 
-
 int main() {
 
     generateBoard();
@@ -24,11 +23,13 @@ int main() {
             continue;
         }
         if (checkWin('x')) {
+            clearScreen();
             printBoard();
             printf("X wins!\n");
             break;
         }
         if (checkDraw()) {
+            clearScreen();
             printBoard();
             printf("Draw!\n");
             break;
@@ -37,10 +38,6 @@ int main() {
         int offset = plausibleMoves_Rows(0);
         offset += plausibleMoves_Columns(offset);
         offset += plausibleMoves_Diagonals(offset);
-
-        for (int i=0; i<offset; i++) {
-            printf("Row %d, Column %d\n", plausibleMoves[i][0]+1, plausibleMoves[i][1]+1);
-        }
 
         int move[2];
 
@@ -56,6 +53,7 @@ int main() {
         }
 
         placeO(move[0], move[1]);
+        clearScreen();
         printBoard();
         if (checkWin('o')) {
             printf("O wins!\n");

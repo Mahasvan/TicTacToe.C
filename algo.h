@@ -2,8 +2,16 @@
 // Created by mahas on 08-Dec-22.
 //
 
+
 #ifndef ALGORITHM
 #define ALGORITHM
+#include <string.h>
+
+#if defined(_WIN32) || defined(_WIN64)
+    #define os "windows"
+#else
+    #define os "unix"
+#endif // defined
 
 const char playerPiece = 'x';
 const char botPiece = 'o';
@@ -308,6 +316,15 @@ int checkDraw () {
         }
     }
     return 1;
+}
+
+void clearScreen () {
+    int result = strcmp(os, "windows");
+    if (result == 1) {
+        system("cls");
+    } else {
+        system("clear");
+    }
 }
 
 #endif //ALGORITHM

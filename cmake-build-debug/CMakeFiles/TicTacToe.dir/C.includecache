@@ -7,6 +7,8 @@
 #IncludeRegexTransform: 
 
 /mnt/c/Users/mahas/CLionProjects/TicTacToe/algo.h
+string.h
+-
 
 /mnt/c/Users/mahas/CLionProjects/TicTacToe/main.c
 stdio.h
