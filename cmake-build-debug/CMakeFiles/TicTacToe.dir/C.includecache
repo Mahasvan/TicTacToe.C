@@ -11,6 +11,8 @@
 /mnt/c/Users/mahas/CLionProjects/TicTacToe/main.c
 stdio.h
 -
+stdlib.h
+-
 algo.h
 /mnt/c/Users/mahas/CLionProjects/TicTacToe/algo.h
 

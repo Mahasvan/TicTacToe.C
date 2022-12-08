@@ -63,12 +63,13 @@ int printBoard () {
 }
 
 void findUnoccupiedPlaces () {
+    int count = 0;
     for (int i = 0; i < boardSize; i++) {
         for (int j = 0; j < boardSize; j++) {
             if (board[i][j] == space) {
-                unoccupiedPlaces[i][j] = 1;
-            } else {
-                unoccupiedPlaces[i][j] = 0;
+                unoccupiedPlaces[count][0] = i;
+                unoccupiedPlaces[count][1] = j;
+                count++;
             }
         }
     }
@@ -296,6 +297,17 @@ int checkWin (char piece) {
         return 1;
     }
     return 0;
+}
+
+int checkDraw () {
+    for (int i = 0; i < boardSize; i++) {
+        for (int j = 0; j < boardSize; j++) {
+            if (board[i][j] == space) {
+                return 0;
+            }
+        }
+    }
+    return 1;
 }
 
 #endif //ALGORITHM
