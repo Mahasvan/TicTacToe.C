@@ -13,14 +13,24 @@
     #define os "unix"
 #endif // defined
 
+const char pink[] = "\033[95m";
+const char blue[] = "\033[94m";
+const char cyan[] = "\033[96m";
+const char green[] = "\033[92m";
+const char yellow[] = "\033[93m";
+const char red[] = "\033[91m";
+const char bold[] = "\033[1m";
+const char underline[] = "\033[4m";
+const char end_formatting[] = "\033[0m";
+
 const char playerPiece = 'x';
 const char botPiece = 'o';
 const char space = ' ';
 const char hyphen = '-';
 const char pipe = '|';
 
-const char UtfPlayerPiece[] = "\xEF\xBD\x98";
-const char UtfBotPiece[] = "\xEF\xBD\x8F";
+const char UtfPlayerPiece[] = "\033[96m\xEF\xBD\x98\033[0m";
+const char UtfBotPiece[] = "\033[92m\xEF\xBD\x8F\033[0m";
 const char UtfSpace[] = "\xE3\x80\x80";
 const char UtfHyphen[] = "\xE3\x83\xBC";
 const char UtfPipe[] = "\xEF\xBD\x9C";
