@@ -19,13 +19,17 @@ int main() {
         int row, column;
         printf("Enter row and column: ");
         scanf("%d %d", &row, &column);
-        placeX(row-1, column-1);
-        printBoard();
+        if (placeX(row-1, column-1) == 1) {
+            printf("Invalid move, try again\n");
+            continue;
+        }
         if (checkWin('x')) {
+            printBoard();
             printf("X wins!\n");
             break;
         }
         if (checkDraw()) {
+            printBoard();
             printf("Draw!\n");
             break;
         }
@@ -63,22 +67,4 @@ int main() {
         }
     }
 
-//    placeX(0, 0);
-//    placeX(0, 1);
-//    placeX(0,2);
-//    placeX(1,1);
-//    printf("\n");
-//    printBoard();
-//    int win = checkWin('x');
-//    printf("X Win: %d\n", win);
-//    win = checkWin('o');
-//    printf("O Win: %d\n", win);
-//
-//    findUnoccupiedPlaces();
-//    for (int i=0; i<boardSize; i++) {
-//        for (int j=0; j<boardSize; j++) {
-//            printf("%d", unoccupiedPlaces[i][j]);
-//        }
-//        printf("\n");
-//    }
 }
