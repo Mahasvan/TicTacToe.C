@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/mahas/CLionProjects/TicTacToe/algo.h
+
+/mnt/c/Users/mahas/CLionProjects/TicTacToe/main.c
+stdio.h
+-
+algo.h
+/mnt/c/Users/mahas/CLionProjects/TicTacToe/algo.h
+

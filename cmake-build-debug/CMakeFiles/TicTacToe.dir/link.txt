@@ -1,0 +1,1 @@
+/usr/bin/gcc -g   CMakeFiles/TicTacToe.dir/main.c.o  -o TicTacToe 
