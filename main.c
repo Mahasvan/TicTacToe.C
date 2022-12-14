@@ -1,16 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <unistd.h>
 #define boardSize 3
 
-char gameMode[] = "";
 int unoccupiedPlaces[boardSize][2];
 int plausibleMoves[boardSize*boardSize][2];
 int winningMoves[boardSize*boardSize][2];
 
 #include "algo.h"
 
+int think() {
+    printf("\rThinking...\n");
+    sleep(1);
+    return 0;
+}
+
 int main() {
+    clearScreen();
+    printf("Welcome to Tic-Tac-Toe!\n");
+    printf("You will now play against the computer.\n"
+           "The grid size is %d, and the coordinates are from `1 1` to `%d %d`.\n"
+           "The computer will be `O` and you will be `X`.\n"
+           "You go first.\n"
+           "Press enter to continue.", boardSize, boardSize, boardSize);
+    getchar();
+    clearScreen();
+
+    printf("Sample Input: 1 1\n"
+           "where 1 1 refers to the first row and first column.\n");
+    printf("Press enter to continue.");
+    getchar();
+    clearScreen();
 
     generateBoard();
     printBoard();
@@ -26,7 +46,7 @@ int main() {
         if (checkWin('x')) {
             clearScreen();
             printBoard();
-            printf("X wins!\n");
+            printf("X wins! Congratulations!\n");
             break;
         }
         if (checkDraw()) {
@@ -35,6 +55,8 @@ int main() {
             printf("Draw!\n");
             break;
         }
+
+        think();
 
         // the bot starts to think
         findUnoccupiedPlaces();
@@ -46,7 +68,7 @@ int main() {
             placeO(winningMoves[move][0], winningMoves[move][1]);
             clearScreen();
             printBoard();
-            printf("O wins!\n");
+            printf("O wins! Better luck next time :(\n");
             break;
         }
 
@@ -72,7 +94,7 @@ int main() {
         clearScreen();
         printBoard();
         if (checkWin('o')) {
-            printf("O wins!\n");
+            printf("O wins! Better luck next time :(\n");
             break;
         }
         if (checkDraw()) {
